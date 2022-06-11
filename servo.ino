@@ -59,15 +59,19 @@ void rotateServoDegrees(Servo servo, int degrees, int time){
 
 void loop() {
     rotateServoDegrees(servo, 0, 1500);
-    rotateServoDegrees(servo, 90, 1500);
+    stop_servo_for_seconds(servo, 1500);
     rotateServoDegrees(servo, 180, 1500);
-    rotateServoDegrees(servo, 270, 1500);
-    rotateServoDegrees(servo, 360, 1500);
-
+    stop_servo_for_seconds(servo, 1500);
 }
 
 void determine_stop_location(Servo servo, int time){
     for(int i = 0; i <= 180; i++){
         rotateServoDegrees(servo, i, time);
     }
+}
+
+void stop_servo_for_seconds(Servo servo, int time){
+    servo.detach();
+    delay(time);
+    servo.attach(D8, 500, 2500);
 }
