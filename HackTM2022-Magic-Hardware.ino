@@ -5,15 +5,11 @@ int servoPower = D3;
 int servoSignal = D8;
 
 void startServo() {
-    digitalWrite(servoPower, HIGH);
-    digitalWrite(D4, HIGH);
-    Serial.println("Start servo");
+    servo.attach(servoSignal, 500, 2500);
 }
 
-void stopServo() {
-    digitalWrite(servoPower, LOW);
-    digitalWrite(D4, LOW);
-    Serial.println("Stop servo");
+void stop_servo(){
+    servo.detach();
 }
 
 void setDirection(int dir) {
@@ -45,4 +41,3 @@ void loop() {
     delay(1000);
     Serial.println("Loop");
 }
-
